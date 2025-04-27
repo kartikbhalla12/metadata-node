@@ -1,0 +1,27 @@
+sudo nano /lib/systemd/system/metadata-node.service
+
+
+metadata-node.service file - 
+
+[Unit]
+Description=metadata-node
+Documentation=https://github.com/kartikbhalla/metadata-node
+After=network.target
+
+[Service]
+EnvironmentFile=/var/www/myapp/.env
+Type=simple
+User=ubuntu
+ExecStart=/usr/bin/node /home/ubuntu/metadata-node/app.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
+commands - 
+sudo systemctl daemon-reload
+sudo systemctl start metadata-node
+sudo systemctl enable metadata-node
+sudo systemctl status metadata-node
+
